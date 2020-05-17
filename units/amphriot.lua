@@ -10,7 +10,7 @@ return { amphriot = {
   canGuard               = true,
   canMove                = true,
   canPatrol              = true,
-  category               = [[LAND SINK]],
+  category               = [[LAND FLOAT SWIM]],
   selectionVolumeOffsets = [[0 0 0]],
   selectionVolumeScales  = [[30 30 30]],
   selectionVolumeType    = [[ellipsoid]],
@@ -34,7 +34,7 @@ return { amphriot = {
   maxSlope               = 36,
   maxVelocity            = 1.6,
   minCloakDistance       = 75,
-  movementClass          = [[AKBOT2]],
+  movementClass          = [[SKBOT2]],
   noChaseCategory        = [[TERRAFORM FIXEDWING GUNSHIP HOVER]],
   objectName             = [[amphriot.s3o]],
   script                 = [[amphriot.lua]],
@@ -56,6 +56,7 @@ return { amphriot = {
   trackWidth             = 28,
   turnRate               = 1000,
   upright                = false,
+  waterline              = 18,
 
   weapons                = {
 

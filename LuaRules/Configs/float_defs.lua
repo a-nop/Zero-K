@@ -64,7 +64,7 @@ local floatDefs = {
 		stopSpeedLeeway = 0.05,
 		stopPositionLeeway = 0.1,
 	},
-	
+	--[[
 	[UnitDefNames["amphriot"].id] = {
 		initialRiseSpeed = 3,
 		riseAccel = 0.13,
@@ -85,6 +85,7 @@ local floatDefs = {
 		surfaceMinWait = 80,
 		surfaceMaxWait = 120,
 	},
+	]]--
 	-- This unit expels water with an air tank to float. It results in high rise
 	-- acceleration with low drag. To sink the tank must be filled with water
 	-- which results in a delay and low sink acceleration.
@@ -108,7 +109,7 @@ local floatDefs = {
 		surfaceMinWait = 80,
 		surfaceMaxWait = 120,
 	},
-	
+	--[[
 	-- Big epic unit moves up and down about as quickly as Atlantis
 	[UnitDefNames["amphassault"].id] = {
 		initialRiseSpeed = 1.5,
@@ -127,6 +128,7 @@ local floatDefs = {
 		stopSpeedLeeway = 0.05,
 		stopPositionLeeway = 0.1,
 	},
+	]]--
 }
 
 for id, def in pairs (floatDefs) do

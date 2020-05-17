@@ -31,6 +31,7 @@ local SPEED = 2
 --------------------------------------------------------------------------------
 -- vars
 --------------------------------------------------------------------------------
+local need_build_float = false
 local gun_1 = 1
 
 -- four-stroke tetrapedal walkscript
@@ -335,9 +336,17 @@ end
 --------------------------------------------------------------------------------------
 
 function script.Create()
-	--StartThread(Walk)
+	local build_p = select(5, Spring.GetUnitHealth(unitID))
+	local x, y, z = Spring.GetUnitPosition(unitID)
+	local gh = Spring.GetGroundHeight(x, z)
+	local def_wl = UnitDefs[unitDefID].waterline
+	if build_p < 1 and gh < -def_wl then
+		need_build_float = true
+		local wl = math.max(def_wl, -gh)
+		Spring.MoveCtrl.SetGroundMoveTypeData(unitID, { waterline=wl })
+	end
+
 	StartThread(GG.Script.SmokeUnit, unitID, smokePiece)
-	--StartThread(WeaponRangeUpdate) -- Equal range so not required
 	local height = select(2, Spring.GetUnitPosition(unitID))
 	if height < -20 then
 		if not longRange then
@@ -350,7 +359,21 @@ function script.Create()
 	end
 end
 
+function BuildFloat()
+	local wl = -select(2, Spring.GetUnitPosition(unitID))
+	local target = UnitDefs[unitDefID].waterline
+	while wl > target do
+		Sleep(50)
+		wl = math.max(wl - 2, target)
+		Spring.MoveCtrl.SetGroundMoveTypeData(unitID, { waterline=wl })
+	end
+end
+
 function script.StartMoving()
+	if need_build_float then
+		need_build_float = false
+		StartThread(BuildFloat)
+	end
 	--Spring.Echo("Moving")
 	StartThread(Walk)
 end

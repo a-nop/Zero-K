@@ -12,6 +12,8 @@ local SIG_RESTORE = 4
 local SIG_BOB = 8
 local SIG_FLOAT = 32
 
+local need_build_float = false
+
 --------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------
 -- Swim functions
@@ -275,7 +277,21 @@ local function Stopping()
 	Move(lbleg, y_axis, 0,1)
 end
 
+function BuildFloat()
+	local wl = -select(2, Spring.GetUnitPosition(unitID))
+	local target = UnitDefs[unitDefID].waterline
+	while wl > target do
+		Sleep(50)
+		wl = math.max(wl - 2, target)
+		Spring.MoveCtrl.SetGroundMoveTypeData(unitID, { waterline=wl })
+	end
+end
+
 function script.StartMoving()
+	if need_build_float then
+		need_build_float = false
+		StartThread(BuildFloat)
+	end
 	StartThread(Walk)
 end
 
@@ -285,6 +301,15 @@ function script.StopMoving()
 end
 
 function script.Create()
+	local build_p = select(5, Spring.GetUnitHealth(unitID))
+	local x, y, z = Spring.GetUnitPosition(unitID)
+	local gh = Spring.GetGroundHeight(x, z)
+	local def_wl = UnitDefs[unitDefID].waterline
+	if build_p < 1 and gh < -def_wl then
+		need_build_float = true
+		local wl = math.max(def_wl, -gh)
+		Spring.MoveCtrl.SetGroundMoveTypeData(unitID, { waterline=wl })
+	end
 	
 	Turn(rfleg, x_axis, math.rad(0))
 	Turn(rffoot, x_axis, math.rad(0))

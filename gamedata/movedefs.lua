@@ -96,6 +96,46 @@ local moveDefs = {
 		crushstrength = 5000,
 	},
 	
+	SKBOT2 = {		--surface amphib
+		footprintx = 2,
+		footprintz = 2,
+		maxwaterdepth = 5000,
+		depthmod = 0,
+		maxslope = 36,
+		crushstrength = 50,
+		speedmodclass = 2,
+	},
+	
+	SKBOT3 = {		--surface amphib
+		footprintx = 3,
+		footprintz = 3,
+		maxwaterdepth = 5000,
+		depthmod = 0,
+		maxslope = 36,
+		crushstrength = 150,
+		speedmodclass = 2,
+	},
+	
+	SKBOT4 = {		--surface amphib
+		footprintx = 4,
+		footprintz = 4,
+		maxwaterdepth = 5000,
+		depthmod = 0,
+		maxslope = 36,
+		crushstrength = 500,
+		speedmodclass = 2,
+	},
+	
+	SKBOT6 = {		--surface amphib
+		footprintx = 6,
+		footprintz = 6,
+		maxwaterdepth = 5000,
+		depthmod = 0,
+		maxslope = 36,
+		crushstrength = 5000,
+		speedmodclass = 2,
+	},
+	
 	TKBOT2 = {		--allterrain
 		footprintx = 2,
 		footprintz = 2,

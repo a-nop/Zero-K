@@ -10,7 +10,7 @@ return { amphassault = {
   canGuard            = true,
   canMove             = true,
   canPatrol           = true,
-  category            = [[LAND SINK]],
+  category            = [[LAND FLOAT SWIM]],
   collisionVolumeOffsets  = [[0 0 0]],
   --collisionVolumeScales = [[70 70 70]],
   --collisionVolumeType   = [[ellipsoid]],
@@ -38,7 +38,7 @@ return { amphassault = {
   maxVelocity         = 1.5,
   maxReverseVelocity  = 0,
   minCloakDistance    = 75,
-  movementClass       = [[AKBOT4]],
+  movementClass       = [[SKBOT4]],
   noChaseCategory     = [[TERRAFORM FIXEDWING SUB]],
   objectName          = [[amphassault.s3o]],
   script              = [[amphassault.lua]],
@@ -61,6 +61,7 @@ return { amphassault = {
   trackWidth          = 66,
   turnRate            = 500,
   upright             = false,
+  waterline           = 45,
 
   weapons                       = {
     {
